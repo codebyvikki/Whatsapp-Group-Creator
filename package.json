@@ -1,0 +1,20 @@
+{
+  "name": "wa-group-creator-pro-final",
+  "version": "3.1.0",
+  "private": true,
+  "description": "WhatsApp Group Creator Pro with fast 5-second creation pacing, per-account daily limits, and lightweight invite-link recovery",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.24",
+    "express": "^4.21.2",
+    "mongodb": "^6.20.0",
+    "pino": "^9.7.0",
+    "qrcode": "^1.5.4"
+  }
+}

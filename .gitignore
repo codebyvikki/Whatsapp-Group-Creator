@@ -1,0 +1,5 @@
+.env
+auth/
+node_modules/
+panel-data.json
+*.log

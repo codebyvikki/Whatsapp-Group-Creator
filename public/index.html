@@ -1,0 +1,1158 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b7a49">
+<title>WhatsApp Group Creator Pro</title>
+<style>
+:root{
+  --bg:#f3f8f5;--card:rgba(255,255,255,.96);--surface:#f7fbf9;
+  --ink:#122019;--muted:#6c7972;--line:#dfe9e4;
+  --brand:#0da565;--brand2:#087844;--brand3:#e5f8ee;
+  --danger:#c43d4b;--dangerBg:#fff1f3;--warn:#7b6128;--warnBg:#fff9ed;
+  --shadow:0 18px 55px rgba(15,55,37,.08);--shadow2:0 8px 24px rgba(15,55,37,.06);
+  --radius:20px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.45;
+  background:
+    radial-gradient(circle at 12% -8%,#ddf8ea 0,transparent 28%),
+    radial-gradient(circle at 95% 0,#e9f9f2 0,transparent 30%),
+    var(--bg)
+}
+button,input,textarea{font:inherit}
+button{border:0;cursor:pointer}
+button:disabled{opacity:.48;cursor:not-allowed;transform:none!important}
+.hide{display:none!important}
+.wrap{width:min(1120px,calc(100% - 30px));margin:auto;padding:20px 0 38px}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px}
+.card{
+  background:var(--card);border:1px solid rgba(216,229,222,.95);
+  border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(14px)
+}
+.login-card{width:min(460px,100%);padding:30px}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;
+  color:#fff;font-weight:950;letter-spacing:-.05em;
+  background:linear-gradient(145deg,#12b973,#087744);
+  box-shadow:0 10px 24px rgba(13,165,101,.2)
+}
+.brand h1{font-size:24px;line-height:1.1;margin:0;font-weight:900;letter-spacing:-.035em}
+.brand p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.step{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;
+  background:var(--brand3);color:var(--brand2);font-size:11px;font-weight:900;
+  letter-spacing:.04em;text-transform:uppercase;margin-bottom:13px
+}
+.field{margin:17px 0}
+.field label{
+  display:flex;justify-content:space-between;gap:10px;align-items:center;
+  font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px
+}
+.field label span{color:var(--brand2)}
+input,textarea{
+  width:100%;border:1px solid var(--line);background:#fbfdfc;color:var(--ink);
+  border-radius:13px;padding:13px 14px;outline:none;transition:.18s
+}
+input{min-height:48px}
+textarea{min-height:118px;resize:vertical}
+input:focus,textarea:focus{border-color:#76cda2;box-shadow:0 0 0 4px #e5f8ed;background:#fff}
+.btn{
+  min-height:44px;padding:10px 15px;border-radius:12px;font-weight:850;
+  transition:transform .15s,box-shadow .15s,background .15s,opacity .15s
+}
+.btn:hover:not(:disabled){transform:translateY(-1px)}
+.primary{color:#fff;background:linear-gradient(135deg,#11aa68,#087844);box-shadow:0 10px 22px rgba(8,120,68,.15)}
+.ghost{color:var(--brand2);background:#edf7f2}
+.soft{color:#34463e;background:#f0f4f2}
+.danger{color:var(--danger);background:var(--dangerBg)}
+.full{width:100%}
+.error{min-height:19px;color:var(--danger);font-size:12px;margin-top:8px}
+.cap{font-size:12px;color:var(--muted);margin-top:7px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px
+}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.status{
+  display:flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid var(--line);
+  background:#fff;border-radius:999px;font-size:12px;font-weight:850;box-shadow:var(--shadow2)
+}
+.dot{width:9px;height:9px;border-radius:50%;background:#9aa6a0}
+.dot.ok{background:#19bb72;box-shadow:0 0 0 4px #dff8eb}
+.account{
+  display:flex;align-items:center;gap:7px;padding:9px 12px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line);font-size:12px;font-weight:800
+}
+.account b{color:var(--brand2)}
+.disconnect{border:1px solid #f0d5d8}
+.quota{
+  display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;
+  padding:17px 19px;margin-bottom:18px
+}
+.quota-main{display:flex;align-items:center;gap:13px}
+.quota-icon{
+  width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  background:var(--brand3);color:var(--brand2);font-weight:950
+}
+.quota b{font-size:20px;letter-spacing:-.03em}
+.quota span{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+.quota-right{text-align:right;color:var(--muted);font-size:12px}
+.quota-right strong{color:var(--brand2);font-size:14px}
+.layout{display:grid;grid-template-columns:390px minmax(0,1fr);gap:18px;align-items:start}
+.stack{display:grid;gap:18px}
+.pad{padding:21px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.section-head h2{margin:0;font-size:17px;letter-spacing:-.025em}
+.section-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.badge{
+  flex:none;padding:7px 10px;border-radius:999px;background:var(--brand3);color:var(--brand2);
+  font-size:10px;font-weight:950
+}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.amount-row{display:grid;grid-template-columns:46px 1fr 46px;gap:7px}
+.amount-row input{text-align:center;font-weight:900;font-size:16px;padding:8px}
+.stepper{width:46px;min-width:46px;padding:0;background:#edf7f2;color:var(--brand2);font-size:20px}
+.create-row{display:grid;grid-template-columns:1fr 92px;gap:9px;margin-top:17px}
+.warning{
+  margin-top:10px;padding:10px 12px;border:1px solid #f0dfb5;background:var(--warnBg);
+  color:var(--warn);border-radius:12px;font-size:12px;line-height:1.45
+}
+.warning::before{content:"⚠ ";font-weight:900}
+.connection-card{padding:18px}
+.connection-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.connection-head b{font-size:14px}
+.connection-head span{font-size:10px;font-weight:900;color:var(--brand2);background:var(--brand3);padding:6px 8px;border-radius:999px}
+.qr{
+  margin-top:13px;border:1px solid var(--line);border-radius:15px;padding:13px;
+  background:var(--surface);text-align:center
+}
+.qr img{width:min(250px,100%);background:#fff;padding:8px;border-radius:13px}
+.qr-wait{padding:30px 12px;color:var(--muted);font-size:12px}
+.loader{
+  width:28px;height:28px;border:3px solid #d7eee1;border-top-color:var(--brand);
+  border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.live{min-height:0}
+.job-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.job-title h2{margin:0;font-size:18px}
+.job-title p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.pill{
+  padding:7px 10px;border-radius:999px;background:#edf2ef;color:#5c6a64;
+  font-size:10px;font-weight:950;letter-spacing:.05em
+}
+.pill.live{background:#e4f8ed;color:var(--brand2)}
+.progress-meta{display:flex;justify-content:space-between;align-items:end;margin:25px 0 8px}
+.progress-meta span{color:var(--muted);font-size:12px;font-weight:750}
+.progress-meta b{font-size:22px}
+.progress{height:11px;padding:2px;background:#e7eeea;border-radius:99px;overflow:hidden}
+.bar{
+  height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#0aa261,#21c57d,#6fe2a9);transition:width .3s ease
+}
+.progress-sub{display:flex;justify-content:space-between;gap:10px;margin-top:8px;color:var(--muted);font-size:11px}
+.current{
+  margin:17px 0 12px;padding:14px 15px;border:1px solid #dcebe3;border-radius:14px;
+  background:linear-gradient(135deg,#f8fcfa,#eef8f3);font-weight:750;font-size:13px
+}
+.job-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.job-summary{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 4px
+}
+.mini{
+  padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:var(--surface)
+}
+.mini b{display:block;font-size:17px}
+.mini span{color:var(--muted);font-size:10px}
+.results-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px
+}
+.results-head h3{font-size:13px;margin:0}
+.tools{display:flex;gap:7px}
+.small{min-height:35px;padding:7px 10px;border-radius:10px;font-size:11px}
+.results{margin-top:10px;max-height:420px;overflow:auto;border-top:1px solid var(--line)}
+.result{
+  display:grid;grid-template-columns:33px minmax(0,1fr) auto;gap:10px;align-items:center;
+  padding:13px 2px;border-bottom:1px solid var(--line)
+}
+.result-icon{
+  width:33px;height:33px;border-radius:11px;display:grid;place-items:center;
+  background:#e3f8ed;color:var(--brand2);font-weight:950
+}
+.result-icon.fail{background:#fff0f2;color:var(--danger)}
+.result-name{font-weight:850;font-size:13px}
+.result a{display:block;margin-top:2px;color:var(--brand2);font-size:11px;text-decoration:none;word-break:break-all}
+.result a:hover{text-decoration:underline}
+.result small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+.result-note{color:var(--warn)!important;font-weight:750}
+.history-card{padding:19px;margin-top:18px}
+.history-list{display:grid;gap:0}
+.hist{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--line);font-size:11px
+}
+.hist:last-child{border-bottom:0}
+.hist b{font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:35px 12px;font-size:12px}
+.toast{
+  position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;padding:11px 15px;border-radius:12px;background:#122019;color:#fff;
+  font-size:12px;font-weight:750;box-shadow:0 14px 40px rgba(0,0,0,.2);transition:.22s;z-index:50
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .live{min-height:0}
+}
+@media(max-width:620px){
+  body{font-size:16px}
+  .wrap{width:min(100% - 20px,1120px);padding:14px 0 28px}
+  .topbar{align-items:flex-start;flex-direction:column;gap:11px}
+  .header-right{width:100%;justify-content:space-between}
+  .header-right .status{flex:1;justify-content:center}
+  .account{display:none}
+  .quota{grid-template-columns:1fr;gap:8px}
+  .quota-right{text-align:left}
+  .pad{padding:17px}
+  .row{grid-template-columns:1fr}
+  .create-row{grid-template-columns:1fr}
+  .job-summary{grid-template-columns:repeat(3,1fr)}
+  .result{grid-template-columns:32px minmax(0,1fr)}
+  .result .small{grid-column:2;width:max-content}
+  .tools{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<section id="loginStep" class="screen">
+  <div class="card login-card">
+    <div class="step">Secure access</div>
+    <div class="brand">
+      <div class="logo">WA</div>
+      <div>
+        <h1>Group Creator Pro</h1>
+        <p>Fast, controlled WhatsApp group creation</p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>ACCESS KEY</label>
+      <input id="key" type="password" autocomplete="current-password" placeholder="Enter access key">
+    </div>
+
+    <button class="btn primary full" id="loginBtn">Continue to WhatsApp</button>
+    <div class="error" id="loginErr"></div>
+  </div>
+</section>
+
+<section id="connectStep" class="screen hide">
+  <div class="card login-card">
+    <div class="step">WhatsApp connection</div>
+    <div class="brand">
+      <div class="logo">WA</div>
+      <div>
+        <h1>Connect WhatsApp</h1>
+        <p id="qrStatus">Preparing secure connection…</p>
+      </div>
+    </div>
+
+    <div class="qr">
+      <img id="qr" class="hide" alt="WhatsApp QR code">
+      <div id="qrWait" class="qr-wait">
+        <div class="loader"></div>
+        Waiting for QR…
+      </div>
+    </div>
+
+    <button class="btn soft full" id="refreshQr">Refresh connection</button>
+    <div class="error" id="qrErr"></div>
+  </div>
+</section>
+
+<section id="dashboardStep" class="hide">
+  <div class="wrap">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">WA</div>
+        <div>
+          <h1>Group Creator Pro</h1>
+          <p>Fast batch creation • live progress • link recovery</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="account">
+          Account <b id="accountNumber">—</b>
+        </div>
+        <div class="status">
+          <i class="dot ok" id="dot"></i>
+          <span id="waStatus">WhatsApp connected</span>
+        </div>
+        <button class="btn danger disconnect" id="disconnectBtn">Disconnect</button>
+      </div>
+    </header>
+
+    <div class="card quota">
+      <div class="quota-main">
+        <div class="quota-icon">D</div>
+        <div>
+          <b id="today">0/100</b>
+          <span>Groups created today on this WhatsApp account</span>
+        </div>
+      </div>
+      <div class="quota-right">
+        Per WhatsApp account<br>
+        <strong>100 / day</strong>
+      </div>
+    </div>
+
+    <div class="layout">
+
+      <aside class="stack">
+
+        <div class="card pad">
+          <div class="section-head">
+            <div>
+              <h2>Create new batch</h2>
+              <p>Up to 25 groups per batch. The gap is fixed at 5 seconds.</p>
+            </div>
+            <span class="badge">MAX 25</span>
+          </div>
+
+          <div class="field">
+            <label>GROUP PREFIX</label>
+            <input id="prefix" value="My Group" placeholder="e.g. Physics Wallah">
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>START NUMBER</label>
+              <input id="start" type="number" min="0" value="1" inputmode="numeric">
+            </div>
+
+            <div class="field">
+              <label>GROUP AMOUNT <span>1–25</span></label>
+              <div class="amount-row">
+                <button class="btn stepper" id="minusAmount" type="button">−</button>
+                <input id="amount" type="number" min="1" max="25" value="5" inputmode="numeric">
+                <button class="btn stepper" id="plusAmount" type="button">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>MEMBERS <span>OPTIONAL</span></label>
+            <textarea id="members" placeholder="919876543210&#10;919876543211"></textarea>
+            <div class="cap">
+              Leave blank to automatically use the connected WhatsApp number. Duplicate/invalid numbers are removed.
+            </div>
+          </div>
+
+          <div class="create-row">
+            <button class="btn primary" id="createBtn">Create Groups</button>
+            <button class="btn soft" id="clearBtn">Clear</button>
+          </div>
+
+          <div class="error" id="createErr"></div>
+          <div class="warning hide" id="batchWarning"></div>
+        </div>
+
+      </aside>
+
+      <main class="card pad live">
+
+        <div class="job-head">
+          <div class="job-title">
+            <h2>Live creation</h2>
+            <p id="jobMeta">No active job</p>
+          </div>
+          <span class="pill" id="jobPill">IDLE</span>
+        </div>
+
+        <div class="progress-meta">
+          <span>Batch progress</span>
+          <b id="percent">0%</b>
+        </div>
+
+        <div class="progress">
+          <div class="bar" id="bar"></div>
+        </div>
+
+        <div class="progress-sub">
+          <span id="progressCount">Ready to start</span>
+          <span id="eta">Ready</span>
+        </div>
+
+        <div class="current" id="current">
+          Configure your batch and start. Group creation stays on a fixed 5-second cadence. Invite links recover separately if WhatsApp needs extra time.
+        </div>
+
+        <div class="job-summary">
+          <div class="mini"><b id="success">—</b><span>Success</span></div>
+          <div class="mini"><b id="failed">—</b><span>Failed</span></div>
+          <div class="mini"><b id="pending">—</b><span>Pending</span></div>
+        </div>
+
+        <div class="job-actions">
+          <button class="btn ghost small hide" id="pause">Pause</button>
+          <button class="btn ghost small hide" id="resume">Resume</button>
+          <button class="btn danger small hide" id="cancel">Cancel job</button>
+        </div>
+
+        <div class="results-head">
+          <h3>Created groups</h3>
+          <div class="tools">
+            <button class="btn ghost small" id="copyAll">Copy all</button>
+            <button class="btn soft small" id="downloadTxt">TXT</button>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="empty">Created groups will appear here instantly.</div>
+        </div>
+
+      </main>
+    </div>
+
+    <section class="card history-card">
+      <div class="section-head">
+        <div>
+          <h2>Recent batches</h2>
+          <p>Completed batches and recoverable links.</p>
+        </div>
+      </div>
+      <div class="history-list" id="history">
+        <div class="empty">No history yet.</div>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let token = sessionStorage.getItem('wa_pro_token');
+let timer = null;
+let lastJobId = null;
+let latestResults = [];
+
+async function api(path, body) {
+  const r = await fetch(path, {
+    method: body ? 'POST' : 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-token': token || ''
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+
+  const d = await r.json().catch(() => ({}));
+
+  if (!r.ok) throw Error(d.error || 'Request failed');
+
+  return d;
+}
+
+function showStep(step) {
+  $('loginStep').classList.toggle('hide', step !== 1);
+  $('connectStep').classList.toggle('hide', step !== 2);
+  $('dashboardStep').classList.toggle('hide', step !== 3);
+}
+
+function toast(message) {
+  const el = $('toast');
+  el.textContent = message;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(
+    () => el.classList.remove('show'),
+    2200
+  );
+}
+
+function setAmount(value, final = false) {
+  if (value === '') {
+    $('amount').value = '';
+    return;
+  }
+
+  let n = Number.parseInt(value, 10);
+
+  if (!Number.isFinite(n)) {
+    $('amount').value = '';
+    return;
+  }
+
+  n = Math.min(25, n);
+
+  if (final) n = Math.max(1, n);
+
+  $('amount').value = n;
+}
+
+$('amount').addEventListener('input', e => {
+  if (e.target.value === '') return;
+  setAmount(e.target.value, false);
+});
+
+$('amount').addEventListener('blur', () => {
+  setAmount($('amount').value || '1', true);
+});
+
+$('minusAmount').onclick = () => {
+  const n = Number.parseInt($('amount').value, 10);
+  setAmount(
+    String(
+      Math.max(
+        1,
+        (Number.isFinite(n) ? n : 1) - 1
+      )
+    ),
+    true
+  );
+};
+
+$('plusAmount').onclick = () => {
+  const n = Number.parseInt($('amount').value, 10);
+  setAmount(
+    String(
+      Math.min(
+        25,
+        (Number.isFinite(n) ? n : 0) + 1
+      )
+    ),
+    true
+  );
+};
+
+async function poll() {
+  try {
+    const s = await api('/api/status');
+    render(s);
+  } catch (e) {
+    sessionStorage.removeItem('wa_pro_token');
+    token = null;
+    showStep(1);
+    $('loginErr').textContent = e.message;
+
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+}
+
+function render(s) {
+  if (s.status !== 'connected') {
+    showStep(2);
+
+    $('qrStatus').textContent =
+      s.status === 'qr'
+        ? 'Scan this QR with WhatsApp → Linked devices'
+        : 'Preparing a fresh WhatsApp connection…';
+
+    $('qr').classList.toggle(
+      'hide',
+      !s.qr
+    );
+
+    $('qrWait').classList.toggle(
+      'hide',
+      !!s.qr
+    );
+
+    if (s.qr) $('qr').src = s.qr;
+
+    return;
+  }
+
+  showStep(3);
+
+  $('dot').className = 'dot ok';
+  $('waStatus').textContent = 'WhatsApp connected';
+  $('accountNumber').textContent =
+    s.accountNumber
+      ? '+' + s.accountNumber
+      : '—';
+
+  $('today').textContent =
+    `${s.createdToday}/${s.maxPerDay}`;
+
+    renderHistory(s.history || []);
+
+  const j = s.job;
+
+  $('createBtn').disabled = !!j;
+
+  if (!j) {
+    $('jobPill').textContent = 'IDLE';
+    $('jobPill').className = 'pill';
+    $('jobMeta').textContent = 'No active job';
+
+    const latest = (s.history || []).find(h => h.id === lastJobId) || (s.history || [])[0];
+    if (latest?.results?.length) {
+      latestResults = latest.results;
+      renderResults(latestResults, latest.id);
+    }
+
+    $('current').textContent =
+      latest?.results?.some(r => r.linkPending)
+        ? 'Batch finished. Invite links are still being recovered in the background.'
+        : 'Configure your batch and start. Group creation stays on a fixed 5-second cadence.';
+
+    $('bar').style.width = '0%';
+    $('percent').textContent = '0%';
+    $('progressCount').textContent = 'Ready to start';
+    $('eta').textContent = 'Ready';
+
+    $('success').textContent = '—';
+    $('failed').textContent = '—';
+    $('pending').textContent = '—';
+
+    ['pause','resume','cancel'].forEach(
+      x => $(x).classList.add('hide')
+    );
+
+    return;
+  }
+
+  const done =
+    j.completed + j.failed;
+
+  const pct = j.total
+    ? Math.round(done / j.total * 100)
+    : 0;
+
+  $('jobPill').textContent =
+    j.cancelled
+      ? 'CANCELLED'
+      : j.paused
+        ? 'PAUSED'
+        : j.running
+          ? 'RUNNING'
+          : 'DONE';
+
+  $('jobPill').className =
+    `pill ${j.running ? 'live' : ''}`;
+
+  $('jobMeta').textContent =
+    `${j.id} • ${j.total} groups`;
+
+  $('bar').style.width =
+    `${pct}%`;
+
+  $('percent').textContent =
+    `${pct}%`;
+
+  $('progressCount').textContent =
+    `${done}/${j.total} processed`;
+
+  $('eta').textContent =
+    done < j.total
+      ? `~${Math.max(0, j.total - done) * 5}s`
+      : 'Complete';
+
+  $('success').textContent =
+    j.completed;
+
+  $('failed').textContent =
+    j.failed;
+
+  $('pending').textContent =
+    j.pending;
+
+  if (j.current) {
+    $('current').textContent =
+      `Creating ${j.current.index}/${j.total}: ${j.current.name}`;
+  } else if (j.cancelled) {
+    $('current').textContent =
+      'Job cancelled.';
+  } else {
+    $('current').textContent =
+      `Batch finished — ${j.completed} successful, ${j.failed} failed.`;
+  }
+
+  $('pause').classList.toggle(
+    'hide',
+    !j.running || j.paused
+  );
+
+  $('resume').classList.toggle(
+    'hide',
+    !j.running || !j.paused
+  );
+
+  $('cancel').classList.toggle(
+    'hide',
+    !j.running
+  );
+
+  if (j.id !== lastJobId) {
+    lastJobId = j.id;
+    latestResults = [];
+  }
+
+  latestResults = j.results || [];
+
+  renderResults(
+    latestResults,
+    j.id
+  );
+}
+
+function renderResults(rs, jobId) {
+  if (!rs.length) {
+    $('results').innerHTML =
+      '<div class="empty">Created groups will appear here instantly.</div>';
+
+    return;
+  }
+
+  const success =
+    rs.filter(r => r.status === 'success')
+      .slice()
+      .reverse();
+
+  const failed =
+    rs.filter(r => r.status !== 'success')
+      .slice()
+      .reverse();
+
+  $('results').innerHTML =
+    [...success, ...failed].map(r => {
+      if (r.status === 'success') {
+        const hasLink = Boolean(r.link);
+
+        return `
+          <div class="result">
+            <div class="result-icon">✓</div>
+
+            <div>
+              <div class="result-name">${esc(r.name)}</div>
+
+              ${
+                hasLink
+                  ? `<a href="${escAttr(r.link)}" target="_blank" rel="noopener">${esc(r.link)}</a>`
+                  : `<small class="result-note">
+                      Group created • recovering invite link…
+                    </small>`
+              }
+
+              <small>
+                ${esc(r.id || '')}
+                • ${r.createdAt ? new Date(r.createdAt).toLocaleTimeString() : ''}
+              </small>
+            </div>
+
+            ${
+              hasLink
+                ? `<button class="btn ghost small copy-one" data-copy="${escAttr(r.link)}">Copy</button>`
+                : `<button class="btn ghost small retry-link" data-job="${escAttr(jobId)}" data-index="${Number(r.index)}">Get link</button>`
+            }
+          </div>`;
+      }
+
+      return `
+        <div class="result">
+          <div class="result-icon fail">!</div>
+
+          <div>
+            <div class="result-name">${esc(r.name)}</div>
+            <small>${esc(r.error || 'Unknown error')}</small>
+          </div>
+        </div>`;
+    }).join('');
+
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.onclick = async () => {
+      if (!btn.dataset.copy) return;
+
+      try {
+        await navigator.clipboard.writeText(
+          btn.dataset.copy
+        );
+
+        toast('Invite link copied');
+      } catch {
+        toast('Copy failed');
+      }
+    };
+  });
+
+  document.querySelectorAll('.retry-link').forEach(btn => {
+    btn.onclick = async () => {
+      btn.disabled = true;
+      btn.textContent = 'Retrying…';
+
+      try {
+        await api('/api/link/retry', {
+          jobId: btn.dataset.job,
+          index: Number(btn.dataset.index)
+        });
+
+        toast('Invite link recovered');
+
+        await poll();
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Get link';
+        toast(e.message);
+      }
+    };
+  });
+}
+
+function copyAllText() {
+  const good =
+    latestResults.filter(
+      r => r.status === 'success' && r.link
+    );
+
+  if (!good.length) return '';
+
+  return good
+    .map(r => `${r.name}\n${r.link}\n`)
+    .join('\n');
+}
+
+$('copyAll').onclick = async () => {
+  const text = copyAllText();
+
+  if (!text) {
+    toast('No invite links available yet');
+    return;
+  }
+
+  await navigator.clipboard.writeText(text);
+
+  toast(
+    `${latestResults.filter(r => r.status === 'success' && r.link).length} links copied`
+  );
+};
+
+$('downloadTxt').onclick = () => {
+  const text = copyAllText();
+
+  if (!text) {
+    toast('No invite links available yet');
+    return;
+  }
+
+  const blob =
+    new Blob(
+      [text],
+      { type:'text/plain;charset=utf-8' }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement('a');
+
+  a.href = url;
+
+  a.download =
+    `group-links-${new Date().toISOString().slice(0,10)}.txt`;
+
+  a.click();
+
+  setTimeout(
+    () => URL.revokeObjectURL(url),
+    0
+  );
+};
+
+function renderHistory(history) {
+  $('history').innerHTML =
+    history.length
+      ? history.map(j => `
+          <div class="hist">
+            <span>
+              <b>${esc(j.id)}</b><br>
+              ${esc(j.prefix)}
+              • ${j.total} groups
+              • ${j.completed} success
+              / ${j.failed} failed
+              ${j.accountNumber ? `• +${esc(j.accountNumber)}` : ''}
+            </span>
+
+            ${
+              j.failed
+                ? `<button class="btn ghost small retry-batch" data-id="${escAttr(j.id)}">Retry failed</button>`
+                : ''
+            }
+          </div>
+        `).join('')
+      : '<div class="empty">No history yet.</div>';
+
+  document.querySelectorAll('.retry-batch')
+    .forEach(b => {
+      b.onclick = async () => {
+        try {
+          await api(
+            '/api/job/retry',
+            { id: b.dataset.id }
+          );
+
+          toast('Retry started');
+
+          await poll();
+        } catch (e) {
+          toast(e.message);
+        }
+      };
+    });
+}
+
+$('loginBtn').onclick = async () => {
+  $('loginErr').textContent = '';
+
+  try {
+    const d = await api(
+      '/api/login',
+      { key: $('key').value }
+    );
+
+    token = d.token;
+
+    sessionStorage.setItem(
+      'wa_pro_token',
+      token
+    );
+
+    showStep(2);
+
+    if (!timer) {
+      timer = setInterval(
+        poll,
+        1000
+      );
+    }
+
+    await poll();
+  } catch (e) {
+    $('loginErr').textContent =
+      e.message;
+  }
+};
+
+$('key').addEventListener(
+  'keydown',
+  e => {
+    if (e.key === 'Enter') {
+      $('loginBtn').click();
+    }
+  }
+);
+
+$('refreshQr').onclick = async () => {
+  $('qrErr').textContent = '';
+
+  try {
+    await api(
+      '/api/disconnect',
+      {}
+    );
+
+    toast('New QR requested');
+  } catch (e) {
+    $('qrErr').textContent =
+      e.message;
+  }
+};
+
+$('disconnectBtn').onclick = async () => {
+  if (
+    !confirm(
+      'Disconnect WhatsApp and start a fresh QR session?'
+    )
+  ) return;
+
+  try {
+    await api(
+      '/api/disconnect',
+      {}
+    );
+
+    lastJobId = null;
+    latestResults = [];
+
+    toast(
+      'WhatsApp disconnected'
+    );
+
+    showStep(2);
+  } catch (e) {
+    toast(e.message);
+  }
+};
+
+$('createBtn').onclick = async () => {
+  $('createErr').textContent = '';
+
+  const rawAmount =
+    $('amount').value;
+
+  if (rawAmount === '') {
+    $('createErr').textContent =
+      'Please enter a group amount.';
+    return;
+  }
+
+  const amount =
+    Math.min(
+      25,
+      Math.max(
+        1,
+        Number.parseInt(
+          rawAmount,
+          10
+        )
+      )
+    );
+
+  $('amount').value =
+    amount;
+
+  try {
+    const d = await api(
+      '/api/create',
+      {
+        prefix: $('prefix').value,
+        start: $('start').value,
+        amount,
+        members:
+          $('members').value
+            .split(/\r?\n/)
+            .filter(Boolean)
+      }
+    );
+
+    if (d.warning) {
+      $('batchWarning').textContent =
+        d.warning;
+
+      $('batchWarning')
+        .classList.remove('hide');
+    } else {
+      $('batchWarning').textContent = '';
+
+      $('batchWarning')
+        .classList.add('hide');
+    }
+
+    toast(
+      d.validation?.usedConnectedNumber
+        ? 'Batch started with your connected WhatsApp number'
+        : 'Batch started'
+    );
+
+    await poll();
+  } catch (e) {
+    $('createErr').textContent =
+      e.message;
+  }
+};
+
+$('clearBtn').onclick = () => {
+  if ($('createBtn').disabled) return;
+
+  $('prefix').value =
+    'My Group';
+
+  $('start').value =
+    '1';
+
+  $('amount').value =
+    '5';
+
+  $('members').value =
+    '';
+
+  $('createErr').textContent =
+    '';
+
+  $('batchWarning').textContent =
+    '';
+
+  $('batchWarning')
+    .classList.add('hide');
+
+  toast('Form cleared');
+};
+
+$('pause').onclick = async () => {
+  try {
+    await api('/api/job/pause', {});
+    await poll();
+  } catch (e) {
+    toast(e.message);
+  }
+};
+
+$('resume').onclick = async () => {
+  try {
+    await api('/api/job/resume', {});
+    await poll();
+  } catch (e) {
+    toast(e.message);
+  }
+};
+
+$('cancel').onclick = async () => {
+  if (!confirm('Cancel the current job?')) return;
+
+  try {
+    await api('/api/job/cancel', {});
+    await poll();
+  } catch (e) {
+    toast(e.message);
+  }
+};
+
+function esc(v) {
+  return String(v ?? '')
+    .replace(
+      /[&<>"']/g,
+      m => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[m])
+    );
+}
+
+function escAttr(v) {
+  return esc(v);
+}
+
+if (token) {
+  showStep(2);
+
+  if (!timer) {
+    timer = setInterval(
+      poll,
+      1000
+    );
+  }
+
+  poll();
+} else {
+  showStep(1);
+}
+</script>
+</body>
+</html>
